@@ -24,22 +24,27 @@ public class Player : MonoBehaviour
 
     private bool isAlive = true;
     private bool isJumping = false;
+    private bool isTransitioning = false;
 
 
     //Cached component references
 
     private Rigidbody2D rb;
     private Animator animator;
-    private Collider2D collider;
+    private CapsuleCollider2D bodyCollider;
+    private BoxCollider2D feetCollider;
     private float defaultGravityScale;
+    private Transform cameraTarget;
 
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponentInChildren<Animator>();
-        collider = GetComponent<Collider2D>();
+        bodyCollider = GetComponent<CapsuleCollider2D>();
+        feetCollider = GetComponent<BoxCollider2D>();
         defaultGravityScale = rb.gravityScale;
+        cameraTarget = GameObject.FindGameObjectWithTag("CameraTarget").transform;
     }
 
     private void Update()
@@ -59,12 +64,14 @@ public class Player : MonoBehaviour
         print(velocity);
 
         bool hasHorizontalSpeed = Mathf.Abs(rb.velocity.x) > Mathf.Epsilon;
-        animator.SetBool("IsRunning", hasHorizontalSpeed);
+
+        bool isClimbing = feetCollider.IsTouchingLayers(LayerMask.GetMask("Climbing"));
+        animator.SetBool("IsRunning", hasHorizontalSpeed && !isClimbing);
     }
 
     private void Jump()
     {
-        if (!collider.IsTouchingLayers(LayerMask.GetMask("Ground", "Climbing")))
+        if (!feetCollider.IsTouchingLayers(LayerMask.GetMask("Ground", "Climbing")))
         {
             return;
         }
@@ -83,7 +90,7 @@ public class Player : MonoBehaviour
 
     private void ClimbRope()
     {
-        if (!collider.IsTouchingLayers(LayerMask.GetMask("Climbing")))
+        if (!feetCollider.IsTouchingLayers(LayerMask.GetMask("Climbing")))
         {
             animator.SetBool("IsClimbing", false);
             rb.gravityScale = defaultGravityScale;
@@ -97,7 +104,7 @@ public class Player : MonoBehaviour
         rb.velocity = playerVelocity;
 
         bool playerHasVerticalSpeed = Mathf.Abs(rb.velocity.y) > Mathf.Epsilon;
-        bool isOnRope = playerHasVerticalSpeed || !collider.IsTouchingLayers(LayerMask.GetMask("Ground"));
+        bool isOnRope = playerHasVerticalSpeed || !feetCollider.IsTouchingLayers(LayerMask.GetMask("Ground"));
         animator.SetBool("IsClimbing", isOnRope);
     }
 
