@@ -15,10 +15,32 @@ public class Player : MonoBehaviour
     private float jumpSpeed = 1f;
 
     [SerializeField]
+    private float jumpDuration = 1f;
+
+    [Range(0f, 1f)]
+    [SerializeField]
+    private float jumpHeightCut = .5f;
+
+    [SerializeField]
     private float climbSpeed = 1f;
 
     [SerializeField]
-    private float jumpDuration = 1f;
+    private float jumpPressedRememberTime = .1f;
+
+    [SerializeField]
+    private float groundedRememberTime = .1f;
+
+    [Range(0f, .5f)]
+    [SerializeField]
+    private float horizontalDampingWhenStopping = 1f;
+
+    [Range(0f, .5f)]
+    [SerializeField]
+    private float horizontalDampingWhenTurning = 1f;
+
+    [Range(0f, .5f)]
+    [SerializeField]
+    private float basicHorizontalDamping = 1f;
 
     [SerializeField]
     private int health = 1;
@@ -30,11 +52,17 @@ public class Player : MonoBehaviour
     private PhysicsMaterial2D deathMaterial;
 
 
+
     //State
 
     private bool isAlive = true;
     private bool isJumping = false;
-    private bool isTransitioning = false;
+    private float defaultGravityScale;
+    private float jumpPressedRemember = 0f;
+    private float groundedRemember = 0f;
+    private float defaultStoppingDamping;
+    private float defaultTurningDamping;
+    private float defaultBasicDamping;
 
 
     //Cached component references
@@ -43,7 +71,6 @@ public class Player : MonoBehaviour
     private Animator animator;
     private CapsuleCollider2D bodyCollider;
     private BoxCollider2D feetCollider;
-    private float defaultGravityScale;
     private PhysicsMaterial2D defaultMaterial;
 
 
@@ -55,6 +82,10 @@ public class Player : MonoBehaviour
         feetCollider = GetComponent<BoxCollider2D>();
         defaultGravityScale = rb.gravityScale;
         defaultMaterial = GetComponent<BoxCollider2D>().sharedMaterial;
+
+        defaultStoppingDamping = horizontalDampingWhenStopping;
+        defaultTurningDamping = horizontalDampingWhenTurning;
+        defaultBasicDamping = basicHorizontalDamping;
     }
 
     private void Update()
@@ -64,6 +95,7 @@ public class Player : MonoBehaviour
             return;
         }
 
+        RandomizeRunningVelocityDamping();
         Run();
         Jump();
         ClimbRope();
@@ -75,6 +107,24 @@ public class Player : MonoBehaviour
     {
         float controlThrow = CrossPlatformInputManager.GetAxis("Horizontal"); // -1 to +1
         var velocity = new Vector2(controlThrow * runSpeed, rb.velocity.y);
+
+        ///test
+
+        if (Mathf.Abs(CrossPlatformInputManager.GetAxisRaw("Horizontal")) < 0.01f)
+        {
+            velocity.x *= Mathf.Pow(1f - horizontalDampingWhenStopping, Time.deltaTime * 10f);
+        }
+        else if (Mathf.Abs(CrossPlatformInputManager.GetAxisRaw("Horizontal")) != Mathf.Sign(velocity.x))
+        {
+            velocity.x *= Mathf.Pow(1f - horizontalDampingWhenTurning, Time.deltaTime * 10f);
+        }
+        else
+        {
+            velocity.x *= Mathf.Pow(1f - basicHorizontalDamping, Time.deltaTime * 10f);
+        }
+
+        ///test end
+
         rb.velocity = velocity;
 
         bool hasHorizontalSpeed = Mathf.Abs(rb.velocity.x) > Mathf.Epsilon;
@@ -85,16 +135,42 @@ public class Player : MonoBehaviour
 
     private void Jump()
     {
-        if (!feetCollider.IsTouchingLayers(LayerMask.GetMask("Ground", "Climbing", "Stopper")))
+        var hasPressedJumpDown = CrossPlatformInputManager.GetButtonDown("Jump");
+        var hasPressedJumpUp = CrossPlatformInputManager.GetButtonUp("Jump");
+
+        var isGrounded = feetCollider.IsTouchingLayers(LayerMask.GetMask("Ground", "Climbing", "Stopper"));
+
+
+        groundedRemember -= Time.deltaTime;
+        if (isGrounded)
         {
-            return;
+            groundedRemember = groundedRememberTime;
         }
 
-        if (CrossPlatformInputManager.GetButtonDown("Jump"))
+        jumpPressedRemember -= Time.deltaTime;
+        if (hasPressedJumpDown)
         {
+            jumpPressedRemember = jumpPressedRememberTime;
+        }
+
+        if (hasPressedJumpUp && rb.velocity.y > 0)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * jumpHeightCut);
+        }
+
+        //if (!isGrounded)
+        //{
+        //    return;
+        //}
+
+        if (jumpPressedRemember > 0 && groundedRemember > 0) ///hasPressedJump changed with the timer
+        {
+            jumpPressedRemember = 0;
+            groundedRemember = 0;
+
             isJumping = true;
             var jumpVelocityToAdd = new Vector2(0f, jumpSpeed);
-            rb.velocity += jumpVelocityToAdd;
+            rb.velocity = jumpVelocityToAdd; ///it was += but it adds more than the regular when climbing ladder 'cause it already has a velocity and it adds to it
 
             animator.SetTrigger("Jump");
 
@@ -158,6 +234,13 @@ public class Player : MonoBehaviour
         {
             transform.localScale = new Vector2(Mathf.Sign(xVelocity), 1f);
         }
+    }
+
+    private void RandomizeRunningVelocityDamping()
+    {
+        horizontalDampingWhenStopping = Random.Range(defaultStoppingDamping - .005f, defaultStoppingDamping + .005f);
+        horizontalDampingWhenTurning = Random.Range(defaultTurningDamping - .005f, defaultTurningDamping + .005f);
+        basicHorizontalDamping = Random.Range(defaultBasicDamping - .005f, defaultBasicDamping + .005f);
     }
 
     private IEnumerator ResetJump()

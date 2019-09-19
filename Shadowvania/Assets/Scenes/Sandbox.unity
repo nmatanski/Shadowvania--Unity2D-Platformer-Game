@@ -363,7 +363,7 @@ CompositeCollider2D:
   m_GameObject: {fileID: 739865584}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 75e7be2a66005b0449f135fec27ff20e, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -25975,7 +25975,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1331914989
 Transform:
   m_ObjectHideFlags: 0
@@ -26695,7 +26695,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 0cb77231a430b454fb792ff7ffcc3943, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -42941,7 +42941,7 @@ CompositeCollider2D:
   m_GameObject: {fileID: 1897438565}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 75e7be2a66005b0449f135fec27ff20e, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -43591,6 +43591,52 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2081153114, guid: b6fd36a8eafee4d48a948ba7b179626c, type: 3}
+      propertyPath: m_SleepingMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2081153114, guid: b6fd36a8eafee4d48a948ba7b179626c, type: 3}
+      propertyPath: m_Interpolate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2081153113, guid: b6fd36a8eafee4d48a948ba7b179626c, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.05099985
+      objectReference: {fileID: 0}
+    - target: {fileID: 2081153113, guid: b6fd36a8eafee4d48a948ba7b179626c, type: 3}
+      propertyPath: m_Size.y
+      value: 0.60108334
+      objectReference: {fileID: 0}
+    - target: {fileID: 820719384511597570, guid: b6fd36a8eafee4d48a948ba7b179626c,
+        type: 3}
+      propertyPath: jumpPressedRememberTime
+      value: 0.082
+      objectReference: {fileID: 0}
+    - target: {fileID: 820719384511597570, guid: b6fd36a8eafee4d48a948ba7b179626c,
+        type: 3}
+      propertyPath: groundedRememberTime
+      value: 0.1166
+      objectReference: {fileID: 0}
+    - target: {fileID: 820719384511597570, guid: b6fd36a8eafee4d48a948ba7b179626c,
+        type: 3}
+      propertyPath: horizontalDampingWhenStopping
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 820719384511597570, guid: b6fd36a8eafee4d48a948ba7b179626c,
+        type: 3}
+      propertyPath: horizontalDampingWhenTurning
+      value: 0.035
+      objectReference: {fileID: 0}
+    - target: {fileID: 820719384511597570, guid: b6fd36a8eafee4d48a948ba7b179626c,
+        type: 3}
+      propertyPath: basicHorizontalDamping
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 820719384511597570, guid: b6fd36a8eafee4d48a948ba7b179626c,
+        type: 3}
+      propertyPath: jumpHeightCut
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b6fd36a8eafee4d48a948ba7b179626c, type: 3}
 --- !u!1001 &4943916684250481009
@@ -43717,27 +43763,27 @@ PrefabInstance:
     - target: {fileID: 4943916684673366513, guid: b05e005d59aa96d41adf36ff83db0fa0,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.5741189
+      value: -3.5730581
       objectReference: {fileID: 0}
     - target: {fileID: 7374569570256955713, guid: b05e005d59aa96d41adf36ff83db0fa0,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.6832383
+      value: 1.684299
       objectReference: {fileID: 0}
     - target: {fileID: 6401711223643813148, guid: b05e005d59aa96d41adf36ff83db0fa0,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.7107558
+      value: 1.7118378
       objectReference: {fileID: 0}
     - target: {fileID: 4943916684869750119, guid: b05e005d59aa96d41adf36ff83db0fa0,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.8483438
+      value: 1.8495321
       objectReference: {fileID: 0}
     - target: {fileID: 5148776689496084700, guid: b05e005d59aa96d41adf36ff83db0fa0,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.63921
+      value: 1.6402369
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b05e005d59aa96d41adf36ff83db0fa0, type: 3}
