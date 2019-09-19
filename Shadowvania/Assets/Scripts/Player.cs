@@ -71,7 +71,7 @@ public class Player : MonoBehaviour
 
     private void Jump()
     {
-        if (!feetCollider.IsTouchingLayers(LayerMask.GetMask("Ground", "Climbing")))
+        if (!feetCollider.IsTouchingLayers(LayerMask.GetMask("Ground", "Climbing", "Stopper")))
         {
             return;
         }
@@ -90,7 +90,7 @@ public class Player : MonoBehaviour
 
     private void ClimbRope()
     {
-        if (!feetCollider.IsTouchingLayers(LayerMask.GetMask("Climbing")))
+        if (!feetCollider.IsTouchingLayers(LayerMask.GetMask("Climbing")) || isJumping)
         {
             animator.SetBool("IsClimbing", false);
             rb.gravityScale = defaultGravityScale;
