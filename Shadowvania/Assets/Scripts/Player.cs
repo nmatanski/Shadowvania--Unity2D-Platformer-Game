@@ -254,6 +254,6 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(seconds);
         GetComponent<BoxCollider2D>().sharedMaterial = defaultMaterial;
         Physics2D.IgnoreLayerCollision(10, 13, false);
-        SceneManager.LoadScene("Sandbox");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

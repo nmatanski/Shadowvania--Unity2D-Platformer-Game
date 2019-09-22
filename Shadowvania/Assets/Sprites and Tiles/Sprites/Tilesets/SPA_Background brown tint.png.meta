@@ -79,7 +79,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 2
     aniso: -1
     mipBias: -100
     wrapU: 1
@@ -93,7 +93,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 31
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -111,7 +111,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -123,7 +123,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -135,7 +135,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -147,7 +147,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -161,18 +161,18 @@ TextureImporter:
       name: SPA_Background brown tint_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 116
+        x: 1
+        y: 115
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bd5ff5a735c33f4429c97782353d4deb
+      spriteID: 3ff9c9466f7ff514c900d580ee039750
       internalID: -6414447125379547148
       vertices: []
       indices: 
@@ -182,18 +182,18 @@ TextureImporter:
       name: SPA_Background brown tint_1
       rect:
         serializedVersion: 2
-        x: 38
-        y: 116
+        x: 39
+        y: 115
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4da51d62feefcc74c87e7c6559604682
+      spriteID: 95aa5a2f9b4b1b642926e8335d9701f1
       internalID: -2276109588449258574
       vertices: []
       indices: 
@@ -203,18 +203,18 @@ TextureImporter:
       name: SPA_Background brown tint_2
       rect:
         serializedVersion: 2
-        x: 76
-        y: 116
+        x: 77
+        y: 115
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 39b06873f8d43c147a04d17e17d4f377
+      spriteID: f75bc7ac6672afb4982ddadb1300e8ac
       internalID: 7622431064557552515
       vertices: []
       indices: 
@@ -224,18 +224,18 @@ TextureImporter:
       name: SPA_Background brown tint_3
       rect:
         serializedVersion: 2
-        x: 114
-        y: 116
+        x: 115
+        y: 115
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 403e0c3df7718f4468cd7a081ba9afa1
+      spriteID: 32dcdf1eb1ef6174fbe4781b64667eb0
       internalID: 289114549585270027
       vertices: []
       indices: 
@@ -245,18 +245,18 @@ TextureImporter:
       name: SPA_Background brown tint_4
       rect:
         serializedVersion: 2
-        x: 0
-        y: 78
+        x: 1
+        y: 77
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 968f195cf3b5dfa4da5a1dbc2ffc70b4
+      spriteID: 3695077563ca3ce4e894f7ad7a190dc7
       internalID: -5862157076625757123
       vertices: []
       indices: 
@@ -266,18 +266,18 @@ TextureImporter:
       name: SPA_Background brown tint_5
       rect:
         serializedVersion: 2
-        x: 38
-        y: 78
+        x: 39
+        y: 77
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 753d4ae736004e041a0bd87a0ea76441
+      spriteID: 5b42e3dc4a9dfc14796b878550dce4e3
       internalID: 7565696428887314959
       vertices: []
       indices: 
@@ -287,18 +287,18 @@ TextureImporter:
       name: SPA_Background brown tint_6
       rect:
         serializedVersion: 2
-        x: 76
-        y: 78
+        x: 77
+        y: 77
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4e85a36aeb12a1244a171d87f44c45bc
+      spriteID: e4ea549d0dd258e43be748f7ad34e38b
       internalID: 3104076937310148729
       vertices: []
       indices: 
@@ -308,18 +308,18 @@ TextureImporter:
       name: SPA_Background brown tint_7
       rect:
         serializedVersion: 2
-        x: 114
-        y: 78
+        x: 115
+        y: 77
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1c37f12dee866324a91ebd2ecccd655c
+      spriteID: a751fe8bbd1795d45a6f672f6c9f52a8
       internalID: 4777146490511550170
       vertices: []
       indices: 
@@ -329,18 +329,18 @@ TextureImporter:
       name: SPA_Background brown tint_8
       rect:
         serializedVersion: 2
-        x: 0
-        y: 40
+        x: 1
+        y: 39
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 49c66e15a443e1c4f9f4dc3e863b2f5c
+      spriteID: 4ff78c3b8b5b00d4eb67d2a4b67df40d
       internalID: 4021284656184010451
       vertices: []
       indices: 
@@ -350,18 +350,18 @@ TextureImporter:
       name: SPA_Background brown tint_9
       rect:
         serializedVersion: 2
-        x: 38
-        y: 40
+        x: 39
+        y: 39
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 470ee164e41d7b847bd3d062671f5ceb
+      spriteID: a3d4622ef04b68e468c05cb39de19c33
       internalID: -5428507737112726026
       vertices: []
       indices: 
@@ -371,18 +371,18 @@ TextureImporter:
       name: SPA_Background brown tint_10
       rect:
         serializedVersion: 2
-        x: 76
-        y: 40
+        x: 77
+        y: 39
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 502803c943f0b6c48b3b4486c1446345
+      spriteID: edc6f62ee6a1af646a8d3dad1e300761
       internalID: 8721707918184771119
       vertices: []
       indices: 
@@ -392,18 +392,18 @@ TextureImporter:
       name: SPA_Background brown tint_11
       rect:
         serializedVersion: 2
-        x: 114
-        y: 40
+        x: 115
+        y: 39
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4d14067721b6bfa4ba9e879388fc38b7
+      spriteID: 4a005d20da090d54e8137dc92e5e95a8
       internalID: 374688490947754656
       vertices: []
       indices: 
@@ -413,18 +413,18 @@ TextureImporter:
       name: SPA_Background brown tint_12
       rect:
         serializedVersion: 2
-        x: 0
-        y: 2
+        x: 1
+        y: 1
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8f6bafff5e51af84daddb41f16789807
+      spriteID: 65ddc268eeadd5d41867e4cdf6aba169
       internalID: -1693060807349068911
       vertices: []
       indices: 
@@ -434,18 +434,18 @@ TextureImporter:
       name: SPA_Background brown tint_13
       rect:
         serializedVersion: 2
-        x: 38
-        y: 2
+        x: 39
+        y: 1
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 19b0bdffcaed833468d6c0465b5ff020
+      spriteID: d3940a56e077d034fa30eecbe64734d0
       internalID: -568864715573125675
       vertices: []
       indices: 
@@ -455,18 +455,18 @@ TextureImporter:
       name: SPA_Background brown tint_14
       rect:
         serializedVersion: 2
-        x: 76
-        y: 2
+        x: 77
+        y: 1
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 20f83282ae34c3e4e99163de3c894a4b
+      spriteID: eead3abfba0854247b20807a98d398a8
       internalID: 124453552786969483
       vertices: []
       indices: 
@@ -476,18 +476,18 @@ TextureImporter:
       name: SPA_Background brown tint_15
       rect:
         serializedVersion: 2
-        x: 114
-        y: 2
+        x: 115
+        y: 1
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c55e2e4704e442a4fa32ef0035251dce
+      spriteID: 19b8e1bf26418c847b98fc4c91c12ad2
       internalID: -3357515910591759238
       vertices: []
       indices: 
