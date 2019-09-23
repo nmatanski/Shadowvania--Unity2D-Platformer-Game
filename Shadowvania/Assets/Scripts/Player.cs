@@ -43,9 +43,6 @@ public class Player : MonoBehaviour
     private float basicHorizontalDamping = 1f;
 
     [SerializeField]
-    private int health = 1;
-
-    [SerializeField]
     private Vector2 knockback = new Vector2(25f, 25f);
 
     [SerializeField]
@@ -100,7 +97,7 @@ public class Player : MonoBehaviour
         Jump();
         ClimbRope();
         Flip();
-        Die();
+        TakeDamage();
     }
 
     private void Run()
@@ -211,8 +208,9 @@ public class Player : MonoBehaviour
         rb.gravityScale = defaultGravityScale;
     }
 
-    private void Die()
+    private void TakeDamage()
     {
+        var session = FindObjectOfType<GameSession>();
         if (bodyCollider.IsTouchingLayers(LayerMask.GetMask("Enemy", "Hazard")))
         {
             isAlive = false;
@@ -222,6 +220,12 @@ public class Player : MonoBehaviour
             Physics2D.IgnoreLayerCollision(10, 13, true); ///TODO: Make this false on respawn
             GetComponent<BoxCollider2D>().sharedMaterial = deathMaterial;
             StartCoroutine(ChangeToDefaultMaterialAfterSeconds(2f)); /// this also restarts the scene
+
+            session.ProcessPlayerDeath();
+        }
+        if (bodyCollider.IsTouchingLayers(LayerMask.GetMask("Checkpoint")))
+        {
+            session.LastCheckpointScene = SceneManager.GetActiveScene().name;
         }
     }
 
@@ -254,6 +258,5 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(seconds);
         GetComponent<BoxCollider2D>().sharedMaterial = defaultMaterial;
         Physics2D.IgnoreLayerCollision(10, 13, false);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

@@ -35,6 +35,8 @@ public class EnemyMovement : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
+        if (collision.tag != "Ground")
+            return;
         transform.localScale = new Vector2(-Mathf.Sign(rb.velocity.x)/2, .5f);
     }
 }
