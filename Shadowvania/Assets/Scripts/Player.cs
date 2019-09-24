@@ -49,7 +49,6 @@ public class Player : MonoBehaviour
     private PhysicsMaterial2D deathMaterial;
 
 
-
     //State
 
     private bool isAlive = true;
@@ -97,7 +96,7 @@ public class Player : MonoBehaviour
         Jump();
         ClimbRope();
         Flip();
-        TakeDamage();
+        TakeDamageOrInteract();
     }
 
     private void Run()
@@ -208,7 +207,7 @@ public class Player : MonoBehaviour
         rb.gravityScale = defaultGravityScale;
     }
 
-    private void TakeDamage()
+    private void TakeDamageOrInteract()
     {
         var session = FindObjectOfType<GameSession>();
         if (bodyCollider.IsTouchingLayers(LayerMask.GetMask("Enemy", "Hazard")))
@@ -219,13 +218,16 @@ public class Player : MonoBehaviour
 
             Physics2D.IgnoreLayerCollision(10, 13, true); ///TODO: Make this false on respawn
             GetComponent<BoxCollider2D>().sharedMaterial = deathMaterial;
-            StartCoroutine(ChangeToDefaultMaterialAfterSeconds(2f)); /// this also restarts the scene
+            StartCoroutine(ChangeToDefaultMaterialAfterSeconds(1f)); /// this also restarts the scene
 
             session.ProcessPlayerDeath();
         }
         if (bodyCollider.IsTouchingLayers(LayerMask.GetMask("Checkpoint")))
         {
-            session.LastCheckpointScene = SceneManager.GetActiveScene().name;
+            session.LastCheckpointSceneOnDeath = SceneManager.GetActiveScene().name;
+            ///TODO: get the transform.position of the checkpoint
+            session.LastCheckpointOnDeath = transform.position;
+            session.LastCheckpointOnHit = transform.position;
         }
     }
 
@@ -255,8 +257,9 @@ public class Player : MonoBehaviour
 
     private IEnumerator ChangeToDefaultMaterialAfterSeconds(float seconds)
     {
+        print("here");
         yield return new WaitForSeconds(seconds);
         GetComponent<BoxCollider2D>().sharedMaterial = defaultMaterial;
-        Physics2D.IgnoreLayerCollision(10, 13, false);
+        Physics2D.IgnoreLayerCollision(8, 10, false);
     }
 }

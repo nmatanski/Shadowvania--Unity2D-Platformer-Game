@@ -6,6 +6,23 @@ using UnityEngine.SceneManagement;
 
 public class GameSession : MonoBehaviour
 {
+    //Config
+
+    [SerializeField]
+    private Player player;
+    public Player Player
+    {
+        get
+        {
+            if (player == null)
+            {
+                player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+            }
+            return player;
+        }
+        set { player = value; }
+    }
+
     [SerializeField]
     private int playerLivesCapacity = 3;
     public int PlayerLivesCapacity
@@ -13,7 +30,6 @@ public class GameSession : MonoBehaviour
         get { return playerLivesCapacity; }
         set { playerLivesCapacity = value; }
     }
-
 
     [SerializeField]
     private int currentPlayerLives = 3;
@@ -23,14 +39,32 @@ public class GameSession : MonoBehaviour
         set { currentPlayerLives = value; }
     }
 
+    [SerializeField]
+    private string lastCheckpointSceneOnDeath = "Main Menu";
+    public string LastCheckpointSceneOnDeath
+    {
+        get { return lastCheckpointSceneOnDeath; }
+        set { lastCheckpointSceneOnDeath = value; }
+    }
 
     [SerializeField]
-    private string lastCheckpointScene = "Main Menu";
-    public string LastCheckpointScene
+    private Vector2 lastCheckpointOnHit = new Vector2(0, 0);
+    public Vector2 LastCheckpointOnHit
     {
-        get { return lastCheckpointScene; }
-        set { lastCheckpointScene = value; }
+        get { return lastCheckpointOnHit; }
+        set { lastCheckpointOnHit = value; }
     }
+
+    //State
+
+    private bool hasDied = false;
+    private bool hasHit = false;
+
+    public bool HasEntered { get; set; } = false;
+
+    public string ExitUsed { get; set; }
+
+    public Vector2 LastCheckpointOnDeath { get; set; } = Vector2.zero;
 
 
 
@@ -47,6 +81,52 @@ public class GameSession : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        print("hasentered = " + HasEntered);
+        if (hasDied)
+        {
+            print(LastCheckpointOnDeath);
+            if (LastCheckpointOnDeath != Vector2.zero)
+            {
+                Player.transform.position = LastCheckpointOnDeath;
+            }
+            hasDied = false;
+        }
+        else if (hasHit)
+        {
+            Player.transform.position = LastCheckpointOnHit;
+            hasHit = false;
+        }
+        else if (HasEntered)
+        {
+            foreach (var exit in FindObjectsOfType<RoomExit>())
+            {
+                if (exit.Name == ExitUsed)
+                {
+                    Player.transform.position = exit.transform.GetChild(0).position;
+                    break;
+                }
+            }
+
+            HasEntered = false;
+        }
+        ///TODO: else if check which entrance did the player enter the new scene and spawn it there and not the default position
+        ///you should save the exit portal BEFORE the scene load and here get the portal's coords for the next scene - serializefield vector2 on the portal for the next scene
+    }
+
+
 
     public void ProcessPlayerDeath()
     {
@@ -62,7 +142,8 @@ public class GameSession : MonoBehaviour
 
     private void ResetSessionToLastCheckpoint()
     {
-        SceneManager.LoadScene(LastCheckpointScene); ///TODO: Respawn on/near the checkpoint
+        hasDied = true;
+        SceneManager.LoadScene(LastCheckpointSceneOnDeath); ///TODO: Respawn on/near the checkpoint
         //Destroy(gameObject); ///TODO: Do not destroy the progress, just respawn
         CurrentPlayerLives = PlayerLivesCapacity;
         ///TODO: gold /= 2;
@@ -71,7 +152,11 @@ public class GameSession : MonoBehaviour
     private void TakeLife()
     {
         CurrentPlayerLives--;
-        var currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        SceneManager.LoadScene(currentSceneIndex); ///TODO: Load near the hazard/enemy
+        ///TODO: Load near the hazard/enemy
+        if (LastCheckpointOnHit != Vector2.zero)
+        {
+            hasHit = true;
+        }
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

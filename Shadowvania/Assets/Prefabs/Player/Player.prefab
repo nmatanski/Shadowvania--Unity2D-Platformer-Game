@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2081153113}
   - component: {fileID: 3148490872521399509}
   - component: {fileID: 820719384511597570}
+  - component: {fileID: 4324058809980402499}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -111,18 +112,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   runSpeed: 4
-  jumpSpeed: 10
+  jumpSpeed: 10.24
   jumpDuration: 0.4
   jumpHeightCut: 0.5
   climbSpeed: 2.65
   jumpPressedRememberTime: 0.082
   groundedRememberTime: 0.1166
-  horizontalDampingWhenStopping: 0.05
-  horizontalDampingWhenTurning: 0.035
-  basicHorizontalDamping: 0.02
-  health: 1
-  knockback: {x: -2, y: 5}
-  deathMaterial: {fileID: 6200000, guid: 8be6341e1ce3f4cec9902bc34f72d20a, type: 2}
+  horizontalDampingWhenStopping: 0.48
+  horizontalDampingWhenTurning: 0.077
+  basicHorizontalDamping: 0.189
+  knockback: {x: -2, y: 3}
+  deathMaterial: {fileID: 6200000, guid: 0cb77231a430b454fb792ff7ffcc3943, type: 2}
+--- !u!58 &4324058809980402499
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4324058808437201689}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: 75e7be2a66005b0449f135fec27ff20e, type: 2}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.10701439, y: -0.2699}
+  serializedVersion: 2
+  m_Radius: 0.04846716
 --- !u!1 &4324058810065088553
 GameObject:
   m_ObjectHideFlags: 0
@@ -210,7 +226,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1068847031
-  m_SortingLayer: 5
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: dd0a7332a70f45f48939fd3d8098bd8b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

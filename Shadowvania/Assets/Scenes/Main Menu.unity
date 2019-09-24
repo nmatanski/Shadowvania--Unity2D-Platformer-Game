@@ -467,7 +467,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1050861705
-  m_SortingLayer: 7
+  m_SortingLayer: 8
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -5385,7 +5385,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1531981917
-  m_SortingLayer: 6
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -5526,7 +5526,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1878501687
-  m_SortingLayer: 9
+  m_SortingLayer: 10
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0.016129017, y: 0.016129017, z: 0}
@@ -6088,7 +6088,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1669507083
-  m_SortingLayer: 8
+  m_SortingLayer: 9
   m_SortingOrder: 1
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0.016129017, y: 0.016129017, z: 0}
@@ -9769,9 +9769,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19342e25d158f384ba57028c906324b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   playerLivesCapacity: 3
   currentPlayerLives: 3
-  lastCheckpointScene: Main Menu
+  lastCheckpointSceneOnDeath: Main Menu
+  lastCheckpointOnHit: {x: 0, y: 0}
 --- !u!1001 &3481632424635679727
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9838,6 +9840,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3481632424133818669, guid: 2a864e437c88a2043a6581cf7f2c21e6,
+        type: 3}
+      propertyPath: name
+      value: L0-1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2a864e437c88a2043a6581cf7f2c21e6, type: 3}
@@ -9908,73 +9915,5 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2081153114, guid: b6fd36a8eafee4d48a948ba7b179626c, type: 3}
-      propertyPath: m_SleepingMode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2081153114, guid: b6fd36a8eafee4d48a948ba7b179626c, type: 3}
-      propertyPath: m_Interpolate
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2081153113, guid: b6fd36a8eafee4d48a948ba7b179626c, type: 3}
-      propertyPath: m_Offset.y
-      value: -0.05099985
-      objectReference: {fileID: 0}
-    - target: {fileID: 2081153113, guid: b6fd36a8eafee4d48a948ba7b179626c, type: 3}
-      propertyPath: m_Size.y
-      value: 0.60108334
-      objectReference: {fileID: 0}
-    - target: {fileID: 820719384511597570, guid: b6fd36a8eafee4d48a948ba7b179626c,
-        type: 3}
-      propertyPath: jumpPressedRememberTime
-      value: 0.082
-      objectReference: {fileID: 0}
-    - target: {fileID: 820719384511597570, guid: b6fd36a8eafee4d48a948ba7b179626c,
-        type: 3}
-      propertyPath: groundedRememberTime
-      value: 0.1166
-      objectReference: {fileID: 0}
-    - target: {fileID: 820719384511597570, guid: b6fd36a8eafee4d48a948ba7b179626c,
-        type: 3}
-      propertyPath: horizontalDampingWhenStopping
-      value: 0.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 820719384511597570, guid: b6fd36a8eafee4d48a948ba7b179626c,
-        type: 3}
-      propertyPath: horizontalDampingWhenTurning
-      value: 0.035
-      objectReference: {fileID: 0}
-    - target: {fileID: 820719384511597570, guid: b6fd36a8eafee4d48a948ba7b179626c,
-        type: 3}
-      propertyPath: basicHorizontalDamping
-      value: 0.189
-      objectReference: {fileID: 0}
-    - target: {fileID: 820719384511597570, guid: b6fd36a8eafee4d48a948ba7b179626c,
-        type: 3}
-      propertyPath: jumpHeightCut
-      value: 0.5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b6fd36a8eafee4d48a948ba7b179626c, type: 3}
---- !u!1 &4324058809980402498 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4324058808437201689, guid: b6fd36a8eafee4d48a948ba7b179626c,
-    type: 3}
-  m_PrefabInstance: {fileID: 4324058809980402497}
-  m_PrefabAsset: {fileID: 0}
---- !u!58 &4324058809980402499
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4324058809980402498}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 6200000, guid: 75e7be2a66005b0449f135fec27ff20e, type: 2}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.10701439, y: -0.2699}
-  serializedVersion: 2
-  m_Radius: 0.04846716
