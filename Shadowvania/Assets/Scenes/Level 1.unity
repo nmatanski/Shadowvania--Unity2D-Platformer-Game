@@ -20,7 +20,7 @@ RenderSettings:
   m_FogDensity: 0.9
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
+  m_AmbientSkyColor: {r: 0.6372375, g: 0.6763973, b: 0.754717, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
@@ -44,7 +44,7 @@ RenderSettings:
 LightmapSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 11
-  m_GIWorkflowMode: 1
+  m_GIWorkflowMode: 0
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -22162,7 +22162,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1379821471}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.15, y: -0.701, z: 0}
+  m_LocalPosition: {x: -1.15, y: -0.49, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1284830823}
@@ -22192,7 +22192,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1422313799}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.5, y: 0.066, z: 0}
+  m_LocalPosition: {x: -0.5, y: 0.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1539367313}
@@ -29821,27 +29821,27 @@ PrefabInstance:
     - target: {fileID: 4943916684673366513, guid: b05e005d59aa96d41adf36ff83db0fa0,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.543602
+      value: -7.5326767
       objectReference: {fileID: 0}
     - target: {fileID: 4943916684673366513, guid: b05e005d59aa96d41adf36ff83db0fa0,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.6263933
+      value: -0.6264591
       objectReference: {fileID: 0}
     - target: {fileID: 7374569570256955713, guid: b05e005d59aa96d41adf36ff83db0fa0,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.9377875
+      value: -5.9366965
       objectReference: {fileID: 0}
     - target: {fileID: 6401711223643813148, guid: b05e005d59aa96d41adf36ff83db0fa0,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.475141
+      value: -5.4729133
       objectReference: {fileID: 0}
     - target: {fileID: 5148776689496084700, guid: b05e005d59aa96d41adf36ff83db0fa0,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.952024
+      value: -5.9509635
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b05e005d59aa96d41adf36ff83db0fa0, type: 3}

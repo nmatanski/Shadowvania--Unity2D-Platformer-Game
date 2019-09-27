@@ -325,7 +325,7 @@ public class Player : MonoBehaviour
             var pos = GameObject.FindGameObjectWithTag("BelowFeet").transform.position;
             var position = tilemap.WorldToCell(pos);
 
-            StartCoroutine(DestructTile(tilemap, position, .5f)); ///TODO: Make a class (probably static) with enum for different kind of destructible foreground tiles and get the time based on the type
+            StartCoroutine(DestructTile(tilemap, position, .2f)); ///TODO: Make a class (probably static) with enum for different kind of destructible foreground tiles and get the time based on the type
         }
     }
 
