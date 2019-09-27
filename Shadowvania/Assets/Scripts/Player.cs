@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Tilemaps;
 using UnityStandardAssets.CrossPlatformInput;
 
 public class Player : MonoBehaviour
@@ -59,6 +60,7 @@ public class Player : MonoBehaviour
     private float defaultStoppingDamping;
     private float defaultTurningDamping;
     private float defaultBasicDamping;
+    private List<Vector3Int> changedTilesPositions = new List<Vector3Int>();
 
 
     //Cached component references
@@ -216,16 +218,15 @@ public class Player : MonoBehaviour
             animator.SetTrigger("Die");
             GetComponent<Rigidbody2D>().velocity = knockback;
 
-            Physics2D.IgnoreLayerCollision(10, 13, true); ///TODO: Make this false on respawn
+            Physics2D.IgnoreLayerCollision(10, 13, true);
             GetComponent<BoxCollider2D>().sharedMaterial = deathMaterial;
             StartCoroutine(ChangeToDefaultMaterialAfterSeconds(1f)); /// this also restarts the scene
 
             session.ProcessPlayerDeath();
         }
-        if (bodyCollider.IsTouchingLayers(LayerMask.GetMask("Checkpoint")))
+        if (bodyCollider.IsTouchingLayers(LayerMask.GetMask("Checkpoint"))) ///TODO: change this to a normal object (NOT TILE) like the hazard checkpoints but with sprite (toggling between the 2 sprites)
         {
             session.LastCheckpointSceneOnDeath = SceneManager.GetActiveScene().name;
-            ///TODO: get the transform.position of the checkpoint
             session.LastCheckpointOnDeath = transform.position;
             session.LastCheckpointOnHit = transform.position;
         }
@@ -261,5 +262,77 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(seconds);
         GetComponent<BoxCollider2D>().sharedMaterial = defaultMaterial;
         Physics2D.IgnoreLayerCollision(8, 10, false);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision) //it is not getting the right coords of the tile
+    {
+        if (collision.tag == "Checkpoint")
+        {
+            var tilemap = collision.GetComponent<Tilemap>();
+
+            if (tilemap == null)
+            {
+                return;
+            }
+
+            bool hasTilemapChanged = false;
+            //if (changedTilesPositions.Count > 0)
+            //{
+            //    foreach (var tilePosition in changedTilesPositions)
+            //    {
+            //        tilemap.SetTileFlags(tilePosition, TileFlags.None);
+            //        tilemap.SetColor(tilePosition, Color.white);
+            //    }
+            //    hasTilemapChanged = true;
+            //}
+            print("changing color");
+
+            if (ColorUtility.TryParseHtmlString("#6EE511", out var color))
+            {
+                print("changing color");
+                //var pos = transform.position + new Vector3(-0.5f, 0, 0); ///Not the right position of the right tile
+                var pos = GameObject.FindGameObjectWithTag("BelowFeet").transform.position;
+                var position = tilemap.WorldToCell(pos);
+
+                //var position = new Vector3Int((int)pos.x, (int)pos.y, 0);
+                tilemap.SetTileFlags(position, TileFlags.None);
+                tilemap.SetColor(position, color);
+                print($"{tilemap.GetTile(position)}");
+                tilemap.SetTile(position, null);
+
+                //changedTilesPositions.Add(position);
+                hasTilemapChanged = true;
+            }
+
+            if (hasTilemapChanged)
+            {
+                tilemap.RefreshAllTiles();
+            }
+            //var currentTile = tilemap.GetTile(tilemap.WorldToCell(POSITION???)) as Tile; //how to get the position of the tile
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.tag == "Destructible")
+        {
+            var tilemap = collision.collider.GetComponent<Tilemap>();
+            if (tilemap == null)
+            {
+                return;
+            }
+
+            var pos = GameObject.FindGameObjectWithTag("BelowFeet").transform.position;
+            var position = tilemap.WorldToCell(pos);
+
+            StartCoroutine(DestructTile(tilemap, position, .5f)); ///TODO: Make a class (probably static) with enum for different kind of destructible foreground tiles and get the time based on the type
+        }
+    }
+
+    private IEnumerator DestructTile(Tilemap tilemap, Vector3Int tilePosition, float seconds)
+    {
+        tilemap.SetTileFlags(tilePosition, TileFlags.None);
+        yield return new WaitForSeconds(seconds);
+        tilemap.SetTile(tilePosition, null);
     }
 }
