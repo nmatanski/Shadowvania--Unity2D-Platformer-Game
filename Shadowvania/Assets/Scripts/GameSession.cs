@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -40,6 +38,9 @@ public class GameSession : MonoBehaviour
     }
 
     [SerializeField]
+    private int gold = 0;
+
+    [SerializeField]
     private string lastCheckpointSceneOnDeath = "Main Menu";
     public string LastCheckpointSceneOnDeath
     {
@@ -55,6 +56,13 @@ public class GameSession : MonoBehaviour
         set { lastCheckpointOnHit = value; }
     }
 
+
+    [SerializeField]
+    private TextMeshProUGUI livesText;
+
+    [SerializeField]
+    private TextMeshProUGUI goldText;
+
     //State
 
     private bool hasDied = false;
@@ -67,6 +75,12 @@ public class GameSession : MonoBehaviour
     public Vector2 LastCheckpointOnDeath { get; set; } = Vector2.zero;
 
 
+
+    private void Start()
+    {
+        livesText.text = CurrentPlayerLives.ToString();
+        goldText.text = gold.ToString();
+    }
 
     private void Awake()
     {
@@ -102,6 +116,10 @@ public class GameSession : MonoBehaviour
             {
                 Player.transform.position = LastCheckpointOnDeath;
             }
+
+            livesText.text = currentPlayerLives.ToString();
+            goldText.text = gold.ToString();
+
             hasDied = false;
         }
         else if (hasHit)
@@ -140,6 +158,12 @@ public class GameSession : MonoBehaviour
         }
     }
 
+    public void AddToGold(int goldAmount)
+    {
+        gold += goldAmount;
+        goldText.text = gold.ToString();
+    }
+
     private void ResetSessionToLastCheckpoint()
     {
         hasDied = true;
@@ -147,12 +171,13 @@ public class GameSession : MonoBehaviour
         //Destroy(gameObject); ///TODO: Do not destroy the progress, just respawn
         CurrentPlayerLives = PlayerLivesCapacity;
         ///TODO: gold /= 2;
+        gold /= 2;
     }
 
     private void TakeLife()
     {
         CurrentPlayerLives--;
-        ///TODO: Load near the hazard/enemy
+        livesText.text = CurrentPlayerLives.ToString();
         if (LastCheckpointOnHit != Vector2.zero)
         {
             hasHit = true;

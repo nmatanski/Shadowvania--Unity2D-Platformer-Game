@@ -65,7 +65,9 @@ namespace UnityEditor.Tilemaps
         /// Attempts to populate the selected override tile using the chosen sprite.
         /// The assumption here is that the sprite set selected by the user has the same
         /// naming scheme as the original sprite. That is to say, they should both have the same number
-        /// of sprites, each sprite ends in an underscore followed by a number, and that they are
+        /// of sprites, each sprite ends in an under
+        /// 
+        /// followed by a number, and that they are
         /// intended to be equivalent in function.
         /// </summary>
         private void Populate() {
