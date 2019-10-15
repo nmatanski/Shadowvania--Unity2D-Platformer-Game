@@ -1,16 +1,16 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ScenePersist : MonoBehaviour
+public class CoinsPersist : MonoBehaviour
 {
     private int startingSceneIndex;
 
 
     private void Awake()
     {
-        int scenePersistCount = FindObjectsOfType<ScenePersist>().Length;
+        int coinsPersistsCount = FindObjectsOfType<CoinsPersist>().Length;
 
-        if (scenePersistCount > 1)
+        if (coinsPersistsCount > 1)
         {
             Destroy(gameObject);
         }

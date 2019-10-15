@@ -170,7 +170,6 @@ public class GameSession : MonoBehaviour
         SceneManager.LoadScene(LastCheckpointSceneOnDeath); ///TODO: Respawn on/near the checkpoint
         //Destroy(gameObject); ///TODO: Do not destroy the progress, just respawn
         CurrentPlayerLives = PlayerLivesCapacity;
-        ///TODO: gold /= 2;
         gold /= 2;
     }
 

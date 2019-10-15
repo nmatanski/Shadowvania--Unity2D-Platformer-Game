@@ -9367,7 +9367,7 @@ PrefabInstance:
     - target: {fileID: 6783056785173878216, guid: 03e810be845d3b0438aeea84a083b7b5,
         type: 3}
       propertyPath: m_Name
-      value: Scene Persist
+      value: Coins Persist
       objectReference: {fileID: 0}
     - target: {fileID: 1456738432635954097, guid: 03e810be845d3b0438aeea84a083b7b5,
         type: 3}
